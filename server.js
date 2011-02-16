@@ -1,15 +1,9 @@
 /*
-*	Marvelous Chat
-*
-*	Author: Fabrizio Codello
-*/
-
-/*
 * TODO
 
 -chatlogs
 -public realtime log
--change nick /nick
+-change nick with /nick
 -broadcast message on changenick
 
 */
@@ -43,6 +37,7 @@ net.createServer(function(conn) {
 			username = line;
 			conn.write("\r\n* Hello "+ username +"!\r\n");
 			conn.write("*\tUse /help to see all the available commands.\r\n");
+			conn.write("*\tThere are: "+ connections.length +" people connected. \r\n\r\n");
 			return;
 		}
 				
@@ -54,7 +49,7 @@ net.createServer(function(conn) {
 			case '/help':
 					conn.write('\n* Marvelous Chat help section *\r\n\r\n');
 					conn.write('/nick newnick - Change nick to "newnick".\r\n');
-					conn.write('/quit - GTFO the server.\r\n');
+					conn.write('/quit - Quit the server.\r\n');
 					conn.write('/who - Number of people on the server.\r\n');
 					conn.write('/motd - METAL GEAR???\r\n');
 					conn.write('/help - This help page.\r\n\r\n');
