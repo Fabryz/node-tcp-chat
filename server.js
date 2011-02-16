@@ -1,10 +1,11 @@
 /*
 * TODO
 
--chatlogs
--public realtime log
--change nick with /nick
--broadcast message on changenick
+- public realtime log
+- change nick with /nick
+- broadcast message on changenick
+- nick list on /who
+- /me action command
 
 */
 
@@ -71,11 +72,11 @@ net.createServer(function(conn) {
 					conn.write('Not implemented\r\n');
 				break;	
 			default:
-					if (line.substring(0, 4) == '/all ') {
+					/*if (line.substring(0, 4) == '/all ') {
 						connections.forEach(function(one_conn) {
 							one_conn.write('* Broadcast: '+ line +'\r\n');
 						});
-					}
+					}*/
 			
 					date = new Date();
 		
