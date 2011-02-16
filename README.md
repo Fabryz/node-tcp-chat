@@ -1,18 +1,17 @@
 Node TCP Chat
 =============
 
-A Node.js TCP chat server.
+A simple Node.js TCP chat server.
 
-Modified version of the tutorial by Pedro Teixeira found in:
-http://nodetuts.com/tutorials/5-a-basic-tcp-chat-server.html#video
+Modified version of the [tutorial by Pedro Teixeira](http://nodetuts.com/tutorials/5-a-basic-tcp-chat-server.html#video).
 
 Requirements
 ------------
 
 * Node.js
 * Npm
-* [Carrier] (https://github.com/pgte/carrier)
-* [date.format.js] (http://blog.stevenlevithan.com/archives/date-time-format)
+* [Carrier](https://github.com/pgte/carrier)
+* [date.format.js](http://blog.stevenlevithan.com/archives/date-time-format)
 
 Install Carrier with:
 ``npm install carrier``
@@ -20,9 +19,12 @@ Install Carrier with:
 Hosting
 -------
 
-1- Download/clone/upload the repo
+1- Download/clone the repository
+
 2- Start the server with ``node server.js``
+
 3- Connect to your server IP:8080 via telnet/putty...
+
 4- Input your nick, chat & stuff, use ``/quit`` to quit
 
 License
