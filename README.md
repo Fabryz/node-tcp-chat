@@ -3,7 +3,7 @@ Node TCP Chat
 
 A simple Node.js TCP chat server.
 
-Modified version of the [tutorial by Pedro Teixeira](http://nodetuts.com/tutorials/5-a-basic-tcp-chat-server.html#video).
+Customized version of the [tutorial by Pedro Teixeira](http://nodetuts.com/tutorials/5-a-basic-tcp-chat-server.html#video).
 
 Requirements
 ------------
@@ -31,6 +31,14 @@ Or
 
 1- You can temporary connect to my server with:
 ``telnet fabryz.no.de 8080``
+
+Features
+--------
+
+* Nicks
+* Time on every sent message
+* See how many clients are currently connected
+* Daily text chatlogs
 
 License
 -------
