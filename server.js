@@ -79,7 +79,7 @@ net.createServer(function(conn) {
 			
 					date = new Date();
 		
-					var newline = "["+ date.format("isoTime"); +"] "+ username +": "+ line + "\r\n";
+					var newline = "["+ date.format("isoTime") +"] "+ username +": "+ line + "\r\n";
 	
 					connections.forEach(function(one_conn) {
 						one_conn.write(newline);
