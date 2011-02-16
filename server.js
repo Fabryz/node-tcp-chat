@@ -84,6 +84,10 @@ net.createServer(function(conn) {
 					connections.forEach(function(one_conn) {
 						one_conn.write(newline);
 					});
+					
+					var logdate = date.format("yyyy-mm-dd");
+					var log = fs.createWriteStream('log_'+ logdate +'.txt', { 'flags': 'a'});
+					log.write(newline);
 				break;
 		}
 
