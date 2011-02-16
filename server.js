@@ -79,14 +79,13 @@ net.createServer(function(conn) {
 			
 					date = new Date();
 		
-					var newline = "["+ date.format("isoTime") +"] "+ username +": "+ line + "\r\n";
+					var newline = "["+ date.format("isoTime"); +"] "+ username +": "+ line + "\r\n";
 	
 					connections.forEach(function(one_conn) {
 						one_conn.write(newline);
 					});
 					
-					var logdate = date.format("yyyy-mm-dd");
-					var log = fs.createWriteStream('log_'+ logdate +'.txt', { 'flags': 'a'});
+					var log = fs.createWriteStream('log_'+ date.format("isoDate") +'.txt', { 'flags': 'a'});
 					log.write(newline);
 				break;
 		}
