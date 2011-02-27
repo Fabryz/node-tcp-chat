@@ -1,7 +1,7 @@
 /*
 * TODO
 
-- public realtime log
+- public _realtime_ log
 - change nick with /nick
 - broadcast message on changenick
 - nick list on /who
@@ -103,3 +103,31 @@ net.createServer(function(conn) {
 	
 }).listen(8080);
 console.log('[Log] Chat server started.');
+
+/* Show daily chatlog */
+var http = require('http'),
+	path = require('path'),
+	date = new Date();
+
+http.createServer(function(req, res) {
+	var filename = __dirname + '/log_'+ date.format("isoDate") +'.txt.oldes';
+
+	path.exists(filename, function(exists) {  
+        if (!exists) {  
+            res.writeHead(200, {"Content-Type": "text/plain"});  
+            res.end("No daily log found.\n");   
+            return;  
+        }  
+        
+		fs.readFile(filename, function(err, data) {
+			if (err) {
+				res.writeHead(500, {"Content-Type": "text/plain"});
+				res.end(err);
+				return;
+			}
+			res.writeHead(200, { 'Content-Type': 'text/plain' });
+			res.write(data, 'utf8');
+			res.end();
+		});
+	});
+}).listen(8000);
