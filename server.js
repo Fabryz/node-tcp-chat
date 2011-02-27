@@ -15,7 +15,9 @@ var carrier = require('carrier'),
 	
 require('./date.format.js');
 
-var connections = [], date;
+var connections = [],
+	date,
+	logsdir = '/logs/';
 
 net.createServer(function(conn) {
 	
@@ -86,7 +88,7 @@ net.createServer(function(conn) {
 						one_conn.write(newline);
 					});
 					
-					var log = fs.createWriteStream('log_'+ date.format("isoDate") +'.txt', { 'flags': 'a'});
+					var log = fs.createWriteStream(__dirname + logsdir + 'log_'+ date.format("isoDate") +'.txt', { 'flags': 'a'});
 					log.write(newline);
 				break;
 		}
@@ -110,7 +112,7 @@ var http = require('http'),
 	date = new Date();
 
 http.createServer(function(req, res) {
-	var filename = __dirname + '/log_'+ date.format("isoDate") +'.txt.oldes';
+	var filename = __dirname + logsdir + '/log_'+ date.format("isoDate") +'.txt';
 
 	path.exists(filename, function(exists) {  
         if (!exists) {  
