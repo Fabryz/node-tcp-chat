@@ -27,11 +27,6 @@ Hosting
 
 4- Input your nick, chat & stuff, use ``/quit`` to quit
 
-Or
-
-1- You can temporary connect to my server with:
-``telnet fabryz.no.de 8080``
-
 Features
 --------
 
