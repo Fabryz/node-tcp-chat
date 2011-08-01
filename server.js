@@ -21,10 +21,6 @@ var connections = [],
 
 net.createServer(function(conn) {
 	
-	connections.forEach(function(one_conn) {
-		one_conn.write('* Someone joined!\r\n');
-	});
-	
 	connections.push(conn);
 	console.log('Someone connected, '+ connections.length +' total.');
 	
@@ -39,7 +35,7 @@ net.createServer(function(conn) {
 		if (!username) {
 			username = line;
 			
-			wall(username+' joined the chat.');
+			wall(username+' joined the server.');
 			var pos=connections.indexOf(conn);
 			if(pos>=0){
 				connections[pos].user=username;
@@ -76,7 +72,7 @@ net.createServer(function(conn) {
 						one_conn.write('* '+ username +' quitted!\r\n');
 					});
 					conn.end();
-					console.log('[Log] '+ username +' quitted!\r\n');
+					wall(username +' left the server.');
 				break;
 			case '/motd':
 					conn.write('Not implemented\r\n');
@@ -93,7 +89,7 @@ net.createServer(function(conn) {
 					// if /nick
 					if(line.match(/^(\/nick)/i)){
 						var newusername = line.match(/^(\/nick) (\w*)/i)[2];
-						wall(username+' renamed to '+newusername);
+						wall(username +' renamed to '+ newusername+'.');
 						var pos=connections.indexOf(conn);
 						if(pos>=0){
 							connections[pos].user=newusername;
@@ -104,12 +100,9 @@ net.createServer(function(conn) {
 			
 					date = new Date();
 		
-					var feedback = "["+ date.format("isoTime") +"] "+ username +": "+ line + "\r\n";
-	
+					var feedback = username +": "+ line;
 					wall(feedback);
-					
-					var log = fs.createWriteStream(__dirname + logsdir + 'log_'+ date.format("isoDate") +'.txt', { 'flags': 'a'});
-					log.write(feedback);
+
 				break;
 		}
 
@@ -119,16 +112,21 @@ net.createServer(function(conn) {
 		var pos = connections.indexOf(conn);
 		if (pos >= 0) {
 			connections.splice(pos, 1);
-			console.log('[Log] '+ username + ' disconnected.');
+			wall(username + ' disconnected.');
 		}
 	});
 	
 	wall=function(msg){
+		msg = "["+ date.format("isoTime") +"] "+ msg + "\r\n";
 		connections.forEach(function(one_connection){
-			one_connection.write(msg+'\n')
+			one_connection.write(msg)
 		});
 		console.log(msg);
+		log.write(msg);
 	}
+	
+	var log = fs.createWriteStream(__dirname + logsdir + 'log_'+ date.format("isoDate") +'.txt', { 'flags': 'a'});
+
 	
 }).listen(8080);
 console.log('[Log] Chat server started.');
