@@ -79,6 +79,11 @@ net.createServer(function(conn) {
 							one_conn.write('* Broadcast: '+ line +'\r\n');
 						});
 					}*/
+					// if /nick
+					if(line.match(/^(\/nick)/i)){
+						username = line.match(/^(\/nick) (\w*)/i)[2];
+						break;
+					}
 			
 					date = new Date();
 		
